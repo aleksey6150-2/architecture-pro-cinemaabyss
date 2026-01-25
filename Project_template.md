@@ -62,6 +62,8 @@
 Приложите скриншот тестов и скриншот состояния топиков Kafka http://localhost:8090 
 
 ```markdown
+[Kafka topics - screen1](https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/blob/cinema/results/img/task2-screenshot1.png)
+[Kafka topics - screen2](https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/blob/cinema/results/img/task2-screenshot2.png)
 [Скриншот прохождение тестов - screen1](https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/blob/cinema/results/img/task2-screenshot1.png)
 [Скриншот прохождение тестов - screen2](https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/blob/cinema/results/img/task2-screenshot2.png)
 ```
