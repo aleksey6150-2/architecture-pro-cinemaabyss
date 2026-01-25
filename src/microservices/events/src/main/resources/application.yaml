@@ -1,5 +1,24 @@
 spring:
   application:
     name: events
+  kafka:
+    bootstrap-servers:
+      ${KAFKA_BROKERS:kafka:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      transaction-id-prefix: tx-
+    consumer:
+      enable-auto-commit: false
+      isolation-level: read_committed
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
 server:
-  port: 8082
+  port: ${PORT:8082}
+
+kafka:
+  topics:
+    users: users
+    payments: payments
+    movies: movies

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClient;
 
 import java.util.Random;
@@ -52,7 +53,7 @@ public class ProxyService {
 
     public ResponseEntity<String> get(String uri, String queryString, ProxiedServiceEnum serviceEnum) {
         return restClient.get()
-                .uri(resolveMigrationRoute(uri, serviceEnum) + (queryString.isEmpty() ? "" : "?" + queryString))
+                .uri(resolveMigrationRoute(uri, serviceEnum) + (StringUtils.hasText(queryString) ? "" : "?" + queryString))
                 .retrieve()
                 .toEntity(String.class);
     }
