@@ -9,8 +9,6 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       transaction-id-prefix: tx-
     consumer:
-      enable-auto-commit: false
-      isolation-level: read_committed
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
