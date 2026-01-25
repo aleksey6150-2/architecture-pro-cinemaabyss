@@ -17,6 +17,6 @@ server:
 
 kafka:
   topics:
-    users: users
-    payments: payments
-    movies: movies
+    users: user-events
+    payments: payment-events
+    movies: movie-events

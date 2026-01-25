@@ -37,14 +37,20 @@ public class ProxyService {
 
     private String resolveMigrationRoute(String uri, ProxiedServiceEnum serviceEnum) {
 
+        String baseUrl;
+
         if (!this.gradualMigration || serviceEnum == null) {
-            return uri;
+            baseUrl = monolithUrl;
+        } else {
+            baseUrl = switch (serviceEnum) {
+                case MOVIES -> random.nextInt(100) >= migrationPercent ?
+                        this.moviesUrl : this.monolithUrl;
+            };
         }
 
-        return switch (serviceEnum) {
-            case MOVIES -> random.nextInt(100) <= migrationPercent ?
-                    this.moviesUrl : this.monolithUrl;
-        };
+        return baseUrl + uri;
+
+
     }
 
     public ResponseEntity<String> get(String uri, String queryString) {
@@ -53,7 +59,7 @@ public class ProxyService {
 
     public ResponseEntity<String> get(String uri, String queryString, ProxiedServiceEnum serviceEnum) {
         return restClient.get()
-                .uri(resolveMigrationRoute(uri, serviceEnum) + (StringUtils.hasText(queryString) ? "" : "?" + queryString))
+                .uri(resolveMigrationRoute(uri, serviceEnum) + (!StringUtils.hasText(queryString) ? "" : "?" + queryString))
                 .retrieve()
                 .toEntity(String.class);
     }

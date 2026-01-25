@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.yandexpract.cinema.dtos.EventResponse;
 import ru.yandexpract.cinema.dtos.MovieEventDto;
 import ru.yandexpract.cinema.dtos.PaymentEventDto;
@@ -18,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @Service
+@Transactional
 public class EventsService {
 
     private final String usersTopic;
@@ -29,9 +31,9 @@ public class EventsService {
     private final ObjectMapper objectMapper;
 
     public EventsService(KafkaTemplate<String, String> kafkaTemplate,
-                         @Value("${kafka.topics.users") String usersTopic,
-                         @Value("${kafka.topics.payments") String paymentsTopic,
-                         @Value("${kafka.topics.movies") String moviesTopic,
+                         @Value("${kafka.topics.users}") String usersTopic,
+                         @Value("${kafka.topics.payments}") String paymentsTopic,
+                         @Value("${kafka.topics.movies}") String moviesTopic,
                          ObjectMapper objectMapper
                          ) {
         this.usersTopic = usersTopic;
@@ -53,9 +55,9 @@ public class EventsService {
         return sendToKafka(paymentsTopic, dto, dto.getPaymentId(), "payment");
     }
 
-    private EventResponse sendToKafka(String topic, Object dto, int id, String type) {
+    protected EventResponse sendToKafka(String topic, Object dto, int id, String type) {
         try {
-            String key = type + "id";
+            String key = type + id;
             CompletableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, key, objectMapper.writeValueAsString(dto));
             SendResult<String, String> result = future.get();
             RecordMetadata metadata = result.getRecordMetadata();
@@ -77,7 +79,7 @@ public class EventsService {
 
             return response;
         } catch (Exception e) {
-            throw new RuntimeException("Fail to send to kafka event = " + dto);
+            throw new RuntimeException("Fail to send to kafka event = " + dto + " e = " + e.getMessage());
         }
     }
 }

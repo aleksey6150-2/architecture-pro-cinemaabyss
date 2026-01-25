@@ -10,6 +10,8 @@ import ru.yandexpract.cinema.dtos.PaymentEventDto;
 import ru.yandexpract.cinema.dtos.UserEventDto;
 import ru.yandexpract.cinema.service.EventsService;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/events")
 @RequiredArgsConstructor
@@ -35,9 +37,9 @@ public class EventsResource {
                 .body(eventsService.createPaymentEvent(dto));
     }
 
-    @GetMapping("health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.status(HttpStatus.OK).body("ok");
+    @GetMapping("/health")
+    public ResponseEntity health() {
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", true));
     }
 
 

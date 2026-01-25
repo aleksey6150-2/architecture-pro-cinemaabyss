@@ -19,7 +19,7 @@ public class PaymentEventDto {
     private String timestamp;
 
     @JsonProperty("method_type")
-    private int methodType;
+    private String methodType;
 
     /**
      * {

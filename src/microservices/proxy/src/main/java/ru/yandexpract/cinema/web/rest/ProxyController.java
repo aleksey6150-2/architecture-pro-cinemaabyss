@@ -2,12 +2,15 @@ package ru.yandexpract.cinema.web.rest;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import ru.yandexpract.cinema.service.ProxyService;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,6 +21,11 @@ public class ProxyController {
     @GetMapping("/api/movies")
     public ResponseEntity<String> getMovies(HttpServletRequest request) {
         return getProxy(request, ProxyService.ProxiedServiceEnum.MOVIES);
+    }
+
+    @GetMapping("/health")
+    public ResponseEntity getMoviesHealth(HttpServletRequest request) {
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", true));
     }
 
     @PostMapping("/api/movies")
