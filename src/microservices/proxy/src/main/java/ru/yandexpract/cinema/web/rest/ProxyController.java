@@ -28,6 +28,11 @@ public class ProxyController {
         return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", true));
     }
 
+    @GetMapping("/api/proxy/health")
+    public ResponseEntity getProxyHealth() {
+        return ResponseEntity.status(HttpStatus.OK).body(Map.of("status", true));
+    }
+
     @PostMapping("/api/movies")
     public ResponseEntity<String> postMovies(HttpServletRequest request, @RequestBody String body) {
         return proxyService.post(request, request.getRequestURI(), body, ProxyService.ProxiedServiceEnum.MOVIES);
