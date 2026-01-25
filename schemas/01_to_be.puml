@@ -17,15 +17,10 @@ Container(video_fs, "Хранилище видео")
 Container(video_metadata, "Информация о фильмах")
 Container(user_data, "Пользовательские данные")
 
-Container(acl, "Proxy - Anti Corruption layer")
-System_Ext(old_kinobezdna, "Старая система Кинобездна")
-
 System_Ext(ext_recommended, "Рекомендательнаая система")
 
 Rel(user, web_app, "запросы мобилки")
 Rel(user, mobile_app, "запросы")
-Rel(mobile_app, acl, "запросы мобилки")
-Rel(web_app, acl, "запросы мобилки")
 Rel(bff_mobile, gateway, "http")
 Rel(bff_web, gateway, "http")
 
@@ -36,9 +31,8 @@ Rel(gateway, user_data, "http")
 
 Rel(gateway, ext_recommended, "req")
 
-Rel(acl, bff_mobile, "http")
-Rel(acl, bff_web, "http")
-Rel(acl, old_kinobezdna, "http")
+Rel(mobile_app, bff_mobile, "http")
+Rel(web_app, bff_web, "http")
 
 
 
