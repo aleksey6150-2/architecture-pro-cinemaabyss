@@ -33,7 +33,7 @@ spec:
           - name: PORT
             value: "{{ .Values.eventsService.service.targetPort }}"
           - name: KAFKA_BROKERS
-            value: "{{ .Values.eventsService.service.kafkaBrokers }}"
+            value: "kafka:9092"
           resources:
             { { - toYaml .Values.eventsService.resources | nindent 10 } }
           readinessProbe:
