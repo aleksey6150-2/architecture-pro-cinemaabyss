@@ -28,7 +28,7 @@ spec:
         image: {{ .Values.proxyService.image.repository }}:{{ .Values.proxyService.image.tag }}
         imagePullPolicy: {{ .Values.proxyService.image.pullPolicy }}
         ports:
-          - containerPort: 8000
+        - containerPort: 8000
         env:
         - name: MONOLITH_URL
           valueFrom:
