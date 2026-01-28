@@ -25,8 +25,8 @@ spec:
     spec:
       containers:
         - name: events-service
-          image: { { .Values.eventsService.image.repository } }:{{ .Values.eventsService.image.tag }}
-          imagePullPolicy: { { .Values.eventsService.image.pullPolicy } }
+          image: {{ .Values.eventsService.image.repository }}:{{ .Values.eventsService.image.tag }}
+          imagePullPolicy: {{ .Values.eventsService.image.pullPolicy }}
           ports:
             - containerPort: 8082
           env:
@@ -60,7 +60,7 @@ spec:
   selector:
     app: events-service
   ports:
-    - port: { { .Values.eventsService.service.port } }
-      targetPort: { { .Values.eventsService.service.targetPort } }
-  type: { { .Values.eventsService.service.type } }
+    - port: {{ .Values.eventsService.service.port }}
+      targetPort: {{ .Values.eventsService.service.targetPort }}
+  type: {{ .Values.eventsService.service.type }}
   {{- end }}
