@@ -30,10 +30,10 @@ spec:
           ports:
             - containerPort: 8082
           env:
-          - name: PORT
-            value: "8082"
-          - name: KAFKA_BOOTSTRAP_SERVERS
-            value: "kafka:9092"
+            - name: PORT
+              value: "8082"
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
           resources:
             { { - toYaml .Values.eventsService.resources | nindent 10 } }
           readinessProbe:
