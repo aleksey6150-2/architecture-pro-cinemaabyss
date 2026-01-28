@@ -31,8 +31,8 @@ spec:
             - containerPort: 8082
           env:
           - name: PORT
-            value: "{{ .Values.eventsService.service.targetPort }}"
-          - name: KAFKA_BROKERS
+            value: "8082"
+          - name: KAFKA_BOOTSTRAP_SERVERS
             value: "kafka:9092"
           resources:
             { { - toYaml .Values.eventsService.resources | nindent 10 } }
