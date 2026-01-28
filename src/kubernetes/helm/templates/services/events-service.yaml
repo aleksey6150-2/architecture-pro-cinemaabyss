@@ -34,8 +34,6 @@ spec:
               value: "8082"
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: "kafka:9092"
-          resources:
-            { { - toYaml .Values.eventsService.resources | nindent 10 } }
           readinessProbe:
             httpGet:
               path: /api/events/health
