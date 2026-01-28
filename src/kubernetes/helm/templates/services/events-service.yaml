@@ -63,4 +63,4 @@ spec:
     - port: { { .Values.eventsService.service.port } }
       targetPort: { { .Values.eventsService.service.targetPort } }
   type: { { .Values.eventsService.service.type } }
-  { { - end } }
+  {{- end }}
