@@ -55,6 +55,8 @@ spec:
             configMapKeyRef:
               name: cinemaabyss-config
               key: MOVIES_MIGRATION_PERCENT
+        resources:
+          { { - toYaml .Values.eventsService.resources | nindent 10 } }
         readinessProbe:
           httpGet:
             path: /api/proxy/health
