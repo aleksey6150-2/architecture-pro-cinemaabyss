@@ -1,0 +1,39 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Диаграмма контейнеров микросервисной системы "Кинобездна"
+
+Person(user, "Пользователь", "Пользователь")
+
+Container(web_app, "Веб-приложение")
+Container(mobile_app, "Мобильное приложение")
+
+Container(bff_mobile, "BFF - фасад бекенда для Мобильное приложение")
+Container(bff_web, "BFF - фасад бекенда Веб приложение")
+Container(gateway, "Gateway backend - общая бизнес-логика")
+
+Container(users_auth, "Пользователи и авторизация")
+Container(video_fs, "Хранилище видео")
+Container(video_metadata, "Информация о фильмах")
+Container(user_data, "Пользовательские данные")
+
+System_Ext(ext_recommended, "Рекомендательнаая система")
+
+Rel(user, web_app, "запросы мобилки")
+Rel(user, mobile_app, "запросы")
+Rel(bff_mobile, gateway, "http")
+Rel(bff_web, gateway, "http")
+
+Rel(gateway, users_auth, "http")
+Rel(gateway, video_fs, "http")
+Rel(gateway, video_metadata, "http")
+Rel(gateway, user_data, "http")
+
+Rel(gateway, ext_recommended, "req")
+
+Rel(mobile_app, bff_mobile, "http")
+Rel(web_app, bff_web, "http")
+
+
+
+@enduml

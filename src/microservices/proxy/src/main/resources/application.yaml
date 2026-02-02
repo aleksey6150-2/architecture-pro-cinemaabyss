@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: cinema
+server:
+  port: 8000
+
+services:
+  monolith:
+    url: ${MONOLITH_URL:http://localhost:8080}
+  movies-service:
+    url: ${MOVIES_SERVICE_URL:http://localhost:8081}
+  events-service:
+    url: ${EVENTS_SERVICE_URL:http://localhost:8082}
+  gradualMigration: ${GRADUAL_MIGRATION:true}
+  migrationPercent: ${MOVIES_MIGRATION_PERCENT:50}
