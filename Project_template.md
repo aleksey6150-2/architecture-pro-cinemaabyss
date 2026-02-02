@@ -74,7 +74,7 @@
 Как только сборка отработает и в github registry появятся ваши образы, можно переходить к блоку настройки Kubernetes
 Успешным результатом данного шага является "зеленая" сборка и "зеленые" тесты
 
-https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/actions/runs/21350071764/job/61444716490
+https://github.com/aleksey6150-2/architecture-pro-cinemaabyss/actions
 
 ![build-and-push](results/img/task3-build-and-push.png)
 
